@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meal Plan Tracker</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <main class="layout">
+        <section class="panel calendar-panel">
+          <div class="panel-header">
+            <button id="prevWeek" class="nav-button" type="button" aria-label="Previous week">
+              ←
+            </button>
+            <div>
+              <p class="panel-label">Week</p>
+              <h2 id="weekRangeLabel"></h2>
+            </div>
+            <div class="header-actions">
+              <button id="goToday" class="secondary-button" type="button">Today</button>
+              <button id="nextWeek" class="nav-button" type="button" aria-label="Next week">
+                →
+              </button>
+            </div>
+          </div>
+
+          <div class="weekdays" id="weekdays"></div>
+          <div class="week-grid" id="calendarGrid"></div>
+        </section>
+
+        <section class="panel editor-panel">
+          <div id="mealLibrary" class="meal-library"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
