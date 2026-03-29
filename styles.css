@@ -264,7 +264,8 @@ button {
   gap: 8px;
   padding: 8px 10px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.82);
+  background: var(--food-bg, rgba(255, 255, 255, 0.82));
+  border: 1px solid var(--food-border, rgba(0, 0, 0, 0.06));
 }
 
 .slot-item-text {
@@ -317,9 +318,9 @@ button {
   gap: 12px;
   width: 100%;
   padding: 12px 14px;
-  border: 1px solid #e6d8c6;
+  border: 1px solid var(--food-border, #e6d8c6);
   border-radius: 16px;
-  background: white;
+  background: var(--food-bg, white);
   text-align: left;
   color: var(--ink);
   cursor: grab;
@@ -348,6 +349,7 @@ button {
   background: #d96f32;
   color: #fff8ef;
 }
+
 
 .empty-state {
   margin: 0;

@@ -166,7 +166,7 @@ class MealTrackerHandler(SimpleHTTPRequestHandler):
 def run() -> None:
     initialize_database()
     port = int(os.environ.get("PORT", "8000"))
-    server = ThreadingHTTPServer(("127.0.0.1", port), MealTrackerHandler)
+    server = ThreadingHTTPServer(("0.0.0.0", port), MealTrackerHandler)
     print(f"Serving on http://127.0.0.1:{port}")
     try:
         server.serve_forever()

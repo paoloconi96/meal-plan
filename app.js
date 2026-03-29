@@ -184,7 +184,7 @@ function createDayColumn(date) {
         ? values
             .map(
               (value, index) => `
-                <div class="slot-item">
+                <div class="slot-item" style="${getFoodStyle(value)}">
                   <span class="slot-item-text">${escapeHtml(value)}</span>
                   <button class="remove-entry-button" type="button" data-date-key="${dateKey}" data-section-id="${section.id}" data-entry-index="${index}">Remove</button>
                 </div>
@@ -229,6 +229,7 @@ function renderMealLibrary() {
           return `
             <button
               class="drag-item"
+              style="${getFoodStyle(option)}"
               type="button"
               draggable="true"
               data-section-id="${section.id}"
@@ -425,6 +426,23 @@ function pruneEmptySections(dayEntries) {
   return Object.fromEntries(
     Object.entries(dayEntries).filter(([, value]) => normalizeSectionValues(value).length > 0)
   );
+}
+
+function getFoodStyle(value) {
+  const hash = hashString(value);
+  const hue = hash % 360;
+  const saturation = 58 + (hash % 18);
+  const lightness = 88 + (hash % 6);
+  const borderLightness = 68 + (hash % 8);
+  return `--food-bg:hsl(${hue} ${saturation}% ${lightness}%);--food-border:hsl(${hue} ${Math.max(40, saturation - 10)}% ${borderLightness}%);`;
+}
+
+function hashString(value) {
+  let hash = 0;
+  for (let index = 0; index < value.length; index += 1) {
+    hash = (hash * 31 + value.charCodeAt(index)) >>> 0;
+  }
+  return hash;
 }
 
 function loadVisibleWeekStart() {
