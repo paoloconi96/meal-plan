@@ -10,7 +10,7 @@ from urllib.parse import urlparse
 
 
 BASE_DIR = Path(__file__).resolve().parent
-DB_PATH = BASE_DIR / "meal_tracker.db"
+DB_PATH = Path(os.environ.get("DB_PATH", BASE_DIR / "meal_tracker.db"))
 
 
 def get_connection() -> sqlite3.Connection:

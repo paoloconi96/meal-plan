@@ -1,0 +1,12 @@
+services:
+  meal-plan:
+    image: python:3.13-slim
+    working_dir: /app
+    command: python3 server.py
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_PATH=/data/meal_tracker.db
+    volumes:
+      - .:/app:ro
+      - ./data:/data

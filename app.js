@@ -165,11 +165,10 @@ function renderWeek() {
     });
   });
 
-  calendarGrid.querySelectorAll(".remove-entry-button").forEach((button) => {
-    button.addEventListener("click", (event) => {
-      event.stopPropagation();
-      const date = fromDateKey(button.dataset.dateKey);
-      removeEntry(date, button.dataset.sectionId, Number(button.dataset.entryIndex));
+  calendarGrid.querySelectorAll(".slot-item[data-date-key]").forEach((item) => {
+    item.addEventListener("click", () => {
+      const date = fromDateKey(item.dataset.dateKey);
+      removeEntry(date, item.dataset.sectionId, Number(item.dataset.entryIndex));
     });
   });
 }
@@ -184,9 +183,8 @@ function createDayColumn(date) {
         ? values
             .map(
               (value, index) => `
-                <div class="slot-item" style="${getFoodStyle(value)}">
+                <div class="slot-item" style="${getFoodStyle(value)}" data-date-key="${dateKey}" data-section-id="${section.id}" data-entry-index="${index}">
                   <span class="slot-item-text">${escapeHtml(value)}</span>
-                  <button class="remove-entry-button" type="button" data-date-key="${dateKey}" data-section-id="${section.id}" data-entry-index="${index}">Remove</button>
                 </div>
               `
             )
